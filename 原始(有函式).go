@@ -254,11 +254,11 @@ func Read_Table(db *sql.DB, TableName string, args ...interface{}) {
 		} else if n == 2 {
 			err := rows.Scan(&args[0], &args[1])
 			checkError(err)
-		} else if n == 2 {
+		} else if n == 3 {
 			err := rows.Scan(&args[0], &args[1], &args[2])
 			checkError(err)
 		}
-		fmt.Printf("Data row = %s\n", args...)
+		fmt.Printf("Data row = %d\n", args...)
 	}
 
 	//在迴圈中是否有錯誤
@@ -273,7 +273,7 @@ func main() {
 	col_name := []string{"id", "name", "quantity"}
 	col_type := []string{"int", "VARCHAR(50)", "int"}
 
-	//test_col := []string{"id", "name"}
+	test_col := []string{"id", "name"}
 	//連接資料庫
 	db := Connection("mysql", "root", "asdf4440", "127.0.0.1", "test")
 	//defer(關閉資料庫)
@@ -284,19 +284,19 @@ func main() {
 
 	//新建資料表
 	CreateTable(db, "newtest", col_name, col_type)
-	/*
-		//加入值
-		Insert_value(db, "newtest", col_name, 1, "John", 45)
-		Insert_value(db, "newtest", test_col, 3, "David")
 
-		//更新
-		Update(db, "newtest", "quantity", "name", 100, "David")
-		Update(db, "newtest", "name", "quantity", "David", 100)
+	//加入值
+	Insert_value(db, "newtest", col_name, 1, "John", 45)
+	Insert_value(db, "newtest", test_col, 3, "David")
 
-		//刪除值
-		Delete_data(db, "newtest", "name", "David")
+	//更新
+	Update(db, "newtest", "quantity", "name", 100, "David")
+	Update(db, "newtest", "name", "quantity", "David", 100)
 
-		//讀取
-		Read_Table(db, "newtest", "name")
-	*/
+	//刪除值
+	Delete_data(db, "newtest", "name", "David")
+
+	//讀取
+	Read_Table(db, "newtest", "id")
+
 }

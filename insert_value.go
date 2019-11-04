@@ -28,7 +28,10 @@ func Insert(db *sql.DB, TableName string, args ...interface{}) {
 	//args的奇數位置為欄位名稱(go中的偶數位置)))
 	//加入欄位
 	for i := 0; i < n; i++ {
-		if i == 0 { //第一個數值
+		if n == 2 {
+			Insert_str += fmt.Sprintf("INSERT INTO %s(%s) values(", TableName, args[i])
+			break
+		} else if i == 0 { //第一個數值
 			Insert_str += fmt.Sprintf("INSERT INTO %s(%s, ", TableName, args[i])
 		} else if i == n-2 { //最後一個數值
 			Insert_str += fmt.Sprintf("%s) values(", args[i])
@@ -39,7 +42,9 @@ func Insert(db *sql.DB, TableName string, args ...interface{}) {
 
 	//新增占位符
 	for i := 0; i < n/2; i++ {
-		if i == (n/2)-1 {
+		if n == 1 {
+			Insert_str += "?)"
+		} else if i == (n/2)-1 {
 			Insert_str += "?)"
 		} else {
 			Insert_str += "?, "
