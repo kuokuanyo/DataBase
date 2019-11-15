@@ -2,7 +2,6 @@
 package conn
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 )
@@ -12,7 +11,7 @@ import (
 //[]string為查詢欄位
 //args欄位變數類型
 //s 與 args 長度需相同
-func Read(db *sql.DB, TableName string, s []string, args ...interface{}) {
+func (db DB) Read(TableName string, s []string, args ...interface{}) {
 
 	//長度需相同
 	//args長度

@@ -2,12 +2,11 @@
 package conn
 
 import (
-	"database/sql"
 	"fmt"
 )
 
 //funciton(delete database)
-func Delete_Db(db *sql.DB, DbName string) {
+func (db DB) Delete_Db(DbName string) {
 
 	//刪除字串
 	Delete := fmt.Sprintf("DROP DATABASE %s", DbName)
@@ -17,7 +16,7 @@ func Delete_Db(db *sql.DB, DbName string) {
 }
 
 //function(delete table)
-func Delete_Tb(db *sql.DB, TableName string) {
+func (db DB) Delete_Tb(TableName string) {
 
 	//刪除字串
 	Delete := fmt.Sprintf("DROP TABLE %s", TableName)

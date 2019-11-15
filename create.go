@@ -1,13 +1,12 @@
 package conn
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 )
 
 //新建資料庫
-func CreateDb(db *sql.DB, DbName string) {
+func (db DB) CreateDb(DbName string) {
 
 	//字串(檢查資料庫是否已經存在)
 	//func Sprintf(format string, a ...interface{}) string
@@ -33,7 +32,7 @@ func CreateDb(db *sql.DB, DbName string) {
 }
 
 //使用資料庫
-func Use_Db(db *sql.DB, DbName string) {
+func (db DB) Use_Db(DbName string) {
 
 	//字串(使用資料庫)
 	UseName := fmt.Sprintf("USE %s;", DbName)
@@ -49,7 +48,7 @@ func Use_Db(db *sql.DB, DbName string) {
 //建立資料表
 //args索引奇數為欄位名稱，偶數為欄位類型
 //args長度必須為偶數(欄位名稱與類型為一組))
-func CreateTable(db *sql.DB, TableName string, args ...string) {
+func (db DB) CreateTable(TableName string, args ...string) {
 
 	//檢查是否有存在的table
 	//func Sprintf(format string, a ...interface{}) string

@@ -2,7 +2,6 @@
 package conn
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 )
@@ -11,7 +10,7 @@ import (
 //args奇數索引為欄位，偶數為更改數值
 //args總共為四個參數，前兩個為設定數值，後兩個為更改條件
 //update tablename set ... where ...
-func Update_db(db *sql.DB, TableName string, args ...interface{}) {
+func (db DB) Update_db(TableName string, args ...interface{}) {
 
 	//args數量為四
 	if len(args) != 4 {

@@ -20,6 +20,10 @@ type MySqlUser struct {
 	Port     int    //端口
 }
 
+type DB struct {
+	*sql.DB
+}
+
 //定義資料庫連線連線
 //完整的資料格式: [username[:password]@][protocol[(address)]]/dbname[?param1=value1&...&paramN=valueN]
 //mehtod
@@ -58,4 +62,8 @@ func (msu *MySqlUser) Init() *sql.DB {
 	DB.SetMaxOpenConns(msu.MaxOpen)
 	//無錯誤
 	return DB
+}
+
+func NewDB(d *sql.DB) *DB {
+	return &DB{d}
 }

@@ -29,33 +29,37 @@ var s = []string{上列設定名稱}
 func main() {
 
 	//建立初始化連線
-	db := user.Init()
+	connect_db := user.Init()
+
+	//回傳指標
+	db = conn.NewDB(connect_db)
+
 	//最後必須關閉
 	defer db.Close()
 
 	//建立資料庫
-	conn.CreateDb(db, 資料庫名稱)
+	db.CreateDb(資料庫名稱)
 
 	//使用資料庫
-	conn.Use_Db(db, 資料庫名稱)
+	db.Use_Db(資料庫名稱)
 
 	//建立資料表
-	conn.CreateTable(db, 資料表名稱, 欄位名稱, 欄位類型...)
+	db.CreateTable(資料表名稱, 欄位名稱, 欄位類型...)
 
 	//插入數值
-	conn.Insert(db, 資料表明撐, 插入欄位名稱, 插入數值...)
+	db.Insert(資料表明撐, 插入欄位名稱, 插入數值...)
 
 	//更改數值
-	conn.Update_db(db, 資料庫名稱, 設定欄位名稱, 設定新數值, 更改的欄位, 更改欄位的數值)
+	db.Update_db(資料庫名稱, 設定欄位名稱, 設定新數值, 更改的欄位, 更改欄位的數值)
 
 	//刪除資料庫
-	conn.Delete_Db(db , 資料庫名稱)
+	db.Delete_Db(資料庫名稱)
 
 	//刪除資料表
-	conn.Delete_Tb(db, 資料庫名稱)
+	db.Delete_Tb(資料庫名稱)
 
 	//讀取資料
 	//第三個與後面參數長度必須相同
-	conn.Read(db, 資料庫名稱, s, 設定的變數(var))
+	db.Read(資料庫名稱, s, 設定的變數(var))
 
 }

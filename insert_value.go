@@ -2,7 +2,6 @@
 package conn
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
 )
@@ -10,7 +9,7 @@ import (
 //插入值
 //INSERT INTO tablename(col_name...) values(?...)
 //args為插入的數值
-func Insert(db *sql.DB, TableName string, args ...interface{}) {
+func (db DB) Insert(TableName string, args ...interface{}) {
 
 	//加入欄位的長度
 	n := len(args)
