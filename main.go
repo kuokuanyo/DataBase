@@ -32,7 +32,7 @@ func main() {
 	connect_db := user.Init()
 
 	//回傳指標
-	db = conn.NewDB(connect_db)
+	db := conn.NewDB(connect_db)
 
 	//最後必須關閉
 	defer db.Close()
@@ -47,7 +47,7 @@ func main() {
 	db.CreateTable(資料表名稱, 欄位名稱, 欄位類型...)
 
 	//插入數值
-	db.Insert(資料表明撐, 插入欄位名稱, 插入數值...)
+	db.Insert(資料表名稱, 插入欄位名稱, 插入數值...)
 
 	//更改數值
 	db.Update_db(資料庫名稱, 設定欄位名稱, 設定新數值, 更改的欄位, 更改欄位的數值)
