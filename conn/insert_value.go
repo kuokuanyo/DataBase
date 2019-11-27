@@ -50,6 +50,7 @@ func (db DB) Insert(TableName string, args ...interface{}) {
 		}
 	}
 
+
 	/*
 		使用預編譯語句(Prepared Statement)
 		可實現自定義參數查詢
@@ -60,6 +61,7 @@ func (db DB) Insert(TableName string, args ...interface{}) {
 	//Prepaer method 是為了之後的運行先準備好的語法
 	//如需要運行此語法，執行stmt.Exec()
 	//可以同時運行多個查詢
+
 	stmt, err := db.Prepare(Insert_str)
 	defer stmt.Close() //一定要關閉
 	//檢查錯誤
